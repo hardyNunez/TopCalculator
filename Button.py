@@ -13,7 +13,7 @@ class Button:
         self.icon_size = icon_size
         self.input = input
     
-    # Draws the button's rectangle on the screen with previously given attributes and calls draw_icon()
+    # Draws the button square on the screen with given attributes and calls draw_icon() function
     def draw(self, screen):
         pygame.draw.rect(screen, self.color, (self.pos_x, self.pos_y, self.width, self.height))
         self.draw_icon(screen)
@@ -26,11 +26,13 @@ class Button:
         text_rect.center = (self.pos_x + self.width // 2, self.pos_y + self.height // 2)
         screen.blit(text_surface, text_rect)
     
-    # Function for when the button is pressed
+    # Function for button press event
     def pressed(self):
-        print(self.input)
-    
-    # Detects if it is colliding with the body based on a collider
+        global representation 
+        representation = str(self.input)
+        return representation
+            
+    # Checks collision based on a collider with the body
     def area(self, body):
         collider = pygame.Rect(self.pos_x, self.pos_y, self.width, self.height)
         return body.colliderect(collider)
